@@ -1,0 +1,66 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+    <h1>Регистрация</h1>
+    {% if already %}
+           <div class="alert alert-danger" role="alert">User with this login already exists</div>
+    {% endif %}
+    <form action="" method="post" enctype="multipart/form-data" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name }}<br>
+            {% for error in form.name.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        {% if teacher_exist and not already%}
+           <div class="alert alert-danger" role="alert">Teacher with that name already exists</div>
+        {% endif %}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username }}<br>
+            {% for error in form.username.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password }}<br>
+            {% for error in form.password.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password_agree.label }}<br>
+            {{ form.password_agree }}<br>
+            {% for error in form.password_agree.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        {% if true_password and not already%}
+           <div class="alert alert-danger" role="alert">Passwords do not mach</div>
+        {% endif %}
+        <p>Прикрепите свою фотографию</p>
+        <p>
+            {{ form.file }}<br>
+            {% for error in form.file.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        {% if not file_ok and not already%}
+           <div class="alert alert-danger" role="alert">Wrong file format</div>
+        {% endif %}
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}

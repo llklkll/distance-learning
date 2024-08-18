@@ -1,0 +1,26 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+<table border=0 width=100%>
+ <tr>
+  <th width=60% valign="top"><div align=left>
+   <h2>Ученики</h2><br>
+   {% for item in users %}
+     <div class="alert alert-primary" role="alert">
+        <h2>{{item[1]}}</h2>
+        <hr>
+    <a href="/index/{{item[0]}}" class="btn btn-link btn-lg active" role="button" aria-pressed="true">Посмотреть домашнюю работу</a>
+    <pre></pre>
+    <a href="/delete_pupil/{{item[0]}}">Удалить ученика</a>
+    </div>
+  {% endfor %}
+</div></th>
+  <th width=40% valign="top">
+        <h2>{{name}}</h2>
+        <hr>
+        <img src="{{link}}" width="300" alt="здесь должна была быть картинка, 
+    но не нашлась">
+        </th>   
+ </tr>
+</table>
+{% endblock %}

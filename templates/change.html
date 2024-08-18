@@ -1,0 +1,44 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+    <h1>Добавление информации</h1>
+    {% if already %}
+           <div class="alert alert-danger" role="alert">User with this login already exists</div>
+    {% endif %}
+    <form action="" method="post" enctype="multipart/form-data" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.group.label }}<br>
+            {{ form.group }}<br>
+            {% for error in form.group.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.teacher.label }}<br>
+            {{ form.teacher }}<br>
+            {% for error in form.teacher.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        {% if not teacher_exist%}
+           <div class="alert alert-danger" role="alert">Teacher with that name was not found</div>
+        {% endif %}
+        <p>
+            {{ form.file }}<br>
+            {% for error in form.file.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        {% if not file_ok%}
+           <div class="alert alert-danger" role="alert">Wrong file format</div>
+        {% endif %}
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}

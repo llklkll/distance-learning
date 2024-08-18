@@ -1,0 +1,27 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+<table border=0 width=100%>
+ <tr>
+  <th width=60% valign="top"><div align=left>
+  <a href="/index" class="btn btn-link btn-lg active" role="button" aria-pressed="true"><--Обратно</a><br>
+  <p></p>
+   {% for item in achievements %}
+     <div class="alert alert-success" role="alert">
+        <h2>{{item[1]}}</h2>
+        <hr>  
+        <div>{{item[2]}}</div>  
+        <a href="/image_teacher/{{item[0]}}">Посмотреть домашнюю работу</a><br>
+    </div>
+  {% endfor %}
+</div></th>
+  <th width=40% valign="top">
+        <h2>{{name}}</h2>
+        <hr>
+        <img src="{{link}}" width="300" alt="здесь должна была быть картинка, 
+    но не нашлась">  
+        <div>Класс: {{group}}</div>
+        <div>Учитель: {{teacher}}</div></th>
+ </tr>
+</table>
+{% endblock %}
